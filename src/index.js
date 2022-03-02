@@ -1,12 +1,11 @@
 const express = require('express');
 const app = express();
 app.use(express.json());
-
+const PORT = process.env.PORT || 3000;
 // starting the server
-app.listen(3000, () => {
-    console.log(`Server on port ${3000}`);
+app.listen(PORT, () => {
+    console.log(`Server on port ${PORT}`);
 });
-
 app.post('/image/transform', (req, res) => {
     let authorization = req.headers.authorization;
     let separateStrings = authorization.split(' ')[1]
@@ -27,7 +26,6 @@ app.post('/image/transform', (req, res) => {
         }
     }
 });
-
 app.post('/object/clean', (req, res) => {
     // Validate the request
     if (Object.keys(req.body).length === 0) {
